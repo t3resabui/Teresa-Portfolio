@@ -177,6 +177,13 @@
   .card-body { padding: var(--space-sm); }
   .card-body h3 { font-size: var(--fs-base); margin-bottom: var(--space-xs); }
   .card-body p { font-size: var(--fs-sm); color: var(--color-text-muted); }
+  .card-body ul {
+  font-size: var(--fs-sm);
+  color: var(--color-text-muted);
+  list-style-type: circle;
+  line-height: 1.6;
+  padding-left: 1.5em;
+}
   .card-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: var(--space-xs); }
   .card-tags span {
     font-size: 0.75rem;
@@ -246,29 +253,64 @@
 
       <div class="grid">
         <div class="card">
-          <img src="assets/images/project1.jpg" alt="Project 1 screenshot">
+          <img src="static/map_facet.png" alt="Project 1 Thumbnail">
           <div class="card-body">
-            <h3>Project Title</h3>
-            <p>One or two sentence description of the project and its outcome.</p>
+            <h3>NIH Grants Termination and Freezes </h3>
+            <p>
+                <a href = "https://datasci-209-flask-teamscience-verce.vercel.app/" target="_blank"> Link to Project Site</a>
+            </p>
+            <ul>
+                <li><b>Goal: </b>Investigate NIH Grant defunding patterns.</li>
+                <li><b>Target Users:</b> Slightly technical audience who are willing to read the article in some depth (policy makers, grant writers, researchers, journalists, interested individuals)</li>
+    
+            </ul>
             <div class="card-tags">
               <span>Python</span>
+              <span>Altair</span>
               <span>Pandas</span>
               <span>Flask</span>
+              <span>Vercel</span>
+              <span>Scrollama</span>
             </div>
           </div>
         </div>
 
         <div class="card">
-          <img src="assets/images/project2.jpg" alt="Project 2 screenshot">
+          <img src="static/203 Project Thumbnail.png" alt="Project 2 Thumbnail">
           <div class="card-body">
-            <h3>Project Title</h3>
-            <p>One or two sentence description of the project and its outcome.</p>
+            <h3>Investigating the Relationship Between Playing Style and Expected Goals</h3>
+            <ul>
+                <li>
+                    <b>Research Question:</b>To what extent are the four tactical concepts: possession-based build-up, attacking width, vertical attacking movements, and defensive aggression, playing style indicators associated with a team’s expected goals (xG) during the FIFA World Cup 2026?
+                </li>
+            </ul>
             <div class="card-tags">
               <span>R</span>
-              <span>ggplot2</span>
+              <span>Regression</span>
             </div>
           </div>
         </div>
+
+        <div class="card">
+          <img src="static/200 Project Thumbnail.png" alt="Project 3 screenshot">
+          <div class="card-body">
+            <h3>F1 Exploratory Data Analysis</h3>
+            <ul>
+                <li>
+                    Explore F1 data over time to analyze performance trends across eras
+                </li>
+                <li>
+                    F1 technology and rules have evolved over time. This analysis will look into how these changes link to the performance of drivers and teams 
+                </li>
+            </ul>
+            <div class="card-tags">
+              <span>Python</span>
+              <span>pandas</span>
+              <span>matplotlib</span>
+            </div>
+          </div>
+        </div>
+      </div>
       </div>
     </section>
 
@@ -283,7 +325,7 @@
 
   <footer>
     <div class="container">
-      &copy; 2026 Teresa.
+      &copy; 2026 Teresa Bui.
     </div>
   </footer>
 
