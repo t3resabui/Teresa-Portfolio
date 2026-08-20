@@ -1,17 +1,291 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Teresa — Portfolio</title>
-  <meta name="description" content="Data science portfolio and resume for Teresa">
-  <link rel="icon" href="favicon.ico">
-  <link rel="stylesheet" href="css/styles.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Teresa — Portfolio</title>
+<meta name="description" content="Data science portfolio and resume for Teresa">
+
+<style>
+  /* =========================================
+     1. VARIABLES
+     ========================================= */
+  :root {
+    --color-bg: #f2ebe2;
+    --color-bg-alt: #f5f6f8;
+    --color-text: #1a1a1a;
+    --color-text-muted: #5a5a5a;
+    --color-primary: #967859;
+    --color-primary-dark: #82694f;
+    --color-border: #e2e2e2;
+    --color-card-bg: #ffffff;
+
+    --font-base: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    --fs-base: 1rem;
+    --fs-sm: 0.875rem;
+    --fs-lg: 1.25rem;
+    --fs-xl: 2rem;
+    --fs-xxl: 3rem;
+
+    --space-xs: 0.5rem;
+    --space-sm: 1rem;
+    --space-md: 2rem;
+    --space-lg: 4rem;
+    --space-xl: 6rem;
+
+    --max-width: 1100px;
+    --radius: 8px;
+    --shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+    --transition: 0.2s ease;
+  }
+
+  /* =========================================
+     2. RESET / BASE
+     ========================================= */
+  * , *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: var(--font-base);
+    font-size: var(--fs-base);
+    color: var(--color-text);
+    background-color: var(--color-bg);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+  img { max-width: 100%; display: block; }
+  a { color: inherit; text-decoration: none; }
+  ul { list-style: none; }
+  h1, h2, h3 { line-height: 1.2; font-weight: 700; }
+
+  /* =========================================
+     3. LAYOUT
+     ========================================= */
+  .container { max-width: var(--max-width); margin: 0 auto; padding: 0 var(--space-sm); }
+  section { padding: var(--space-xl) 0; }
+
+  /* =========================================
+     4. HEADER / NAV (pure CSS mobile menu — checkbox hack)
+     ========================================= */
+  header {
+    position: fixed;
+    top: 0; left: 0; width: 100%;
+    background-color: var(--color-bg);
+    box-shadow: var(--shadow);
+    z-index: 100;
+  }
+  nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--space-sm) 0;
+  }
+  .nav-logo { font-weight: 700; font-size: var(--fs-lg); }
+
+  #nav-toggle { display: none; } /* the checkbox itself, hidden */
+
+  .nav-toggle-label {
+    display: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+  }
+
+  .nav-menu {
+    display: flex;
+    gap: var(--space-md);
+  }
+
+  .nav-menu a {
+    font-size: var(--fs-sm);
+    color: var(--color-text-muted);
+    transition: color var(--transition);
+  }
+
+  .nav-menu a:hover { color: var(--color-primary); }
+
+  @media (max-width: 768px) {
+    .nav-toggle-label { display: block; }
+
+    .nav-menu {
+      position: absolute;
+      top: 100%; left: 0; right: 0;
+      flex-direction: column;
+      background-color: var(--color-bg);
+      padding: var(--space-sm);
+      box-shadow: var(--shadow);
+      display: none;
+    }
+
+    /* When the hidden checkbox is checked, show the menu */
+    #nav-toggle:checked ~ .nav-menu {
+      display: flex;
+    }
+  }
+
+  /* =========================================
+     5. HERO
+     ========================================= */
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-top: var(--space-xl);
+  }
+  .hero h1 { font-size: var(--fs-xxl); margin-bottom: var(--space-xs); }
+  .hero p {
+    font-size: var(--fs-lg);
+    color: var(--color-text-muted);
+    max-width: 600px;
+    margin-bottom: var(--space-md);
+  }
+
+  .btn {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    border-radius: var(--radius);
+    font-weight: 600;
+    font-size: var(--fs-sm);
+    transition: background-color var(--transition), transform var(--transition);
+  }
+  .btn-primary { background-color: var(--color-primary); color: #fff; }
+  .btn-primary:hover { background-color: var(--color-primary-dark); transform: translateY(-2px); }
+  .btn-outline { border: 1px solid var(--color-border); color: var(--color-text); margin-left: var(--space-xs); }
+
+  /* =========================================
+     6. SECTION HEADINGS
+     ========================================= */
+  .section-title { font-size: var(--fs-xl); margin-bottom: var(--space-md); }
+  .section-subtitle { color: var(--color-text-muted); margin-bottom: var(--space-lg); max-width: 600px; }
+
+  /* =========================================
+     7. PROJECT / CARD GRID
+     ========================================= */
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: var(--space-md);
+  }
+  .card {
+    background-color: var(--color-card-bg);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius);
+    overflow: hidden;
+    transition: transform var(--transition), box-shadow var(--transition);
+  }
+  .card:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
+  .card img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; }
+  .card-body { padding: var(--space-sm); }
+  .card-body h3 { font-size: var(--fs-base); margin-bottom: var(--space-xs); }
+  .card-body p { font-size: var(--fs-sm); color: var(--color-text-muted); }
+  .card-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: var(--space-xs); }
+  .card-tags span {
+    font-size: 0.75rem;
+    padding: 0.2rem 0.6rem;
+    border-radius: 999px;
+    background-color: var(--color-bg-alt);
+    color: var(--color-text-muted);
+  }
+
+  /* =========================================
+     8. FOOTER
+     ========================================= */
+  footer {
+    border-top: 1px solid var(--color-border);
+    padding: var(--space-md) 0;
+    text-align: center;
+    color: var(--color-text-muted);
+    font-size: var(--fs-sm);
+  }
+
+  /* =========================================
+     9. RESPONSIVE
+     ========================================= */
+  @media (max-width: 768px) {
+    .hero h1 { font-size: var(--fs-xl); }
+    section { padding: var(--space-lg) 0; }
+  }
+</style>
 </head>
 <body>
-  <!-- content -->
-   <p>
-    hi
-   </p>
+
+  <header>
+    <div class="container">
+      <nav>
+        <div class="nav-logo">Teresa</div>
+
+        <input type="checkbox" id="nav-toggle">
+        <label for="nav-toggle" class="nav-toggle-label">&#9776;</label>
+
+        <ul class="nav-menu">
+          <li><a href="#about">About</a></li>
+          <li><a href="#projects">Projects</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero container" id="home">
+      <h1>Hi, I'm Teresa.</h1>
+      <p>Data scientist focused on turning messy data into clear, actionable insight.</p>
+      <a href="#projects" class="btn btn-primary">View Projects</a>
+      <a href="assets/Teresa Bui Resume.pdf" class="btn btn-outline">Download Resume</a>
+    </section>
+
+    <section id="about" class="container">
+      <h2 class="section-title">About</h2>
+      <p class="section-subtitle">
+        A short bio goes here — background, focus areas, and what you're currently working on.
+      </p>
+    </section>
+
+    <section id="projects" class="container">
+      <h2 class="section-title">Projects</h2>
+      <p class="section-subtitle">A selection of recent work.</p>
+
+      <div class="grid">
+        <div class="card">
+          <img src="assets/images/project1.jpg" alt="Project 1 screenshot">
+          <div class="card-body">
+            <h3>Project Title</h3>
+            <p>One or two sentence description of the project and its outcome.</p>
+            <div class="card-tags">
+              <span>Python</span>
+              <span>Pandas</span>
+              <span>Flask</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <img src="assets/images/project2.jpg" alt="Project 2 screenshot">
+          <div class="card-body">
+            <h3>Project Title</h3>
+            <p>One or two sentence description of the project and its outcome.</p>
+            <div class="card-tags">
+              <span>R</span>
+              <span>ggplot2</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="container">
+      <h2 class="section-title">Contact</h2>
+      <p class="section-subtitle">
+        Reach me at <a href="mailto:teresabui100@gmail.com" style="color: var(--color-primary);">teresabui100@gmail.com</a>
+        or connect on <a href="https://www.linkedin.com/in/bui-teresa/" style="color: var(--color-primary);">LinkedIn</a>.
+      </p>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      &copy; 2026 Teresa.
+    </div>
+  </footer>
+
 </body>
 </html>
