@@ -60,7 +60,7 @@
   /* =========================================
      3. LAYOUT
      ========================================= */
-  .container { max-width: var(--max-width); margin: 0 auto; padding: 0 var(--space-sm); }
+  .container { max-width: var(--max-width); margin: 0 auto; padding: 0 var(--space-sm) var(--space-md);}
   section { padding: var(--space-xl) 0; }
 
   /* =========================================
@@ -138,6 +138,29 @@
     max-width: 600px;
     margin-bottom: var(--space-md);
   }
+  .hero-content {
+  display: flex;
+  align-items: center;
+  gap: var(--space-lg);
+}
+
+.hero-text {
+  flex: 1;
+}
+
+.hero-actions {
+  display: flex;
+  gap: var(--space-xs);
+  margin-top: var(--space-md);
+}
+
+
+@media (max-width: 768px) {
+  .hero-content {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
 
   .btn {
     display: inline-block;
@@ -156,6 +179,7 @@
      ========================================= */
   .section-title { font-size: var(--fs-xl); margin-bottom: var(--space-md); }
   .section-subtitle { color: var(--color-text-muted); margin-bottom: var(--space-lg); max-width: 600px; }
+
 
   /* =========================================
      7. PROJECT / CARD GRID
@@ -211,6 +235,49 @@
     .hero h1 { font-size: var(--fs-xl); }
     section { padding: var(--space-lg) 0; }
   }
+
+/* =========================================
+    10. ABOUT
+========================================= */
+
+  .about-content {
+  display: flex;
+  gap: var(--space-lg);
+  align-items: flex-start;
+}
+
+.section-body {
+  flex: 1;
+}
+
+.about-image {
+  width: 260px;
+  flex-shrink: 0;
+  border-radius: var(--radius);
+  object-fit: cover;
+}
+.avatar {
+  width: 260px;
+  height: 260px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+@media (max-width: 768px) {
+  .about-content {
+    flex-direction: column;
+  }
+
+  .about-image {
+    width: 100%;
+    max-width: 320px;
+  }
+}
+
+  /* =========================================
+     11. EDUCATION
+     ========================================= */
+  
 </style>
 </head>
 <body>
@@ -218,7 +285,7 @@
   <header>
     <div class="container">
       <nav>
-        <div class="nav-logo">Teresa</div>
+        <div class="nav-logo">Teresa Bui's Portfolio</div>
 
         <input type="checkbox" id="nav-toggle">
         <label for="nav-toggle" class="nav-toggle-label">&#9776;</label>
@@ -233,19 +300,45 @@
   </header>
 
   <main>
-    <section class="hero container" id="home">
+<section class="hero container" id="home">
+  <div class="hero-content">
+    <div class="hero-text">
       <h1>Hi, I'm Teresa.</h1>
-      <p>Data scientist focused on turning messy data into clear, actionable insight.</p>
-      <a href="#projects" class="btn btn-primary">View Projects</a>
-      <a href="assets/Teresa Bui Resume.pdf" class="btn btn-outline">Download Resume</a>
+      <p class="section-body">Data scientist focused on turning messy data into clear, actionable insight.</p>
+    </div>
+    <img src="static/teresa_pfp.png" alt="Teresa" class="about-image avatar">
+  </div>
+  <div class="hero-actions">
+    <a href="#projects" class="btn btn-primary">View Projects</a>
+  <a href="static/assets/Teresa Bui Resume.pdf" class="btn btn-outline" target="_blank" rel="noopener">Open Resume</a>
+  </div>
+  
+</section>
+
+<section id="about" class="container">
+    <h2 class="section-title">About</h2>
+    <div class="about-content">
+        <p class="section-body">
+            I am currently a master's candidate at UC Berkeley for Information and Data Science. Previously, I was at UCLA.
+            <br><br>
+            Aside from data science, I love to bake, read, and hike.
+            <br><br>
+            I have two kitties: Hammy and Whiskey. They're currently too young to explore the outside world, but I hope to have them accompany me on hikes in the future!
+        </p>
+        <img src="static/hammy_whiskey.png" alt="meow" class="about-image avatar">
+    </div>
     </section>
 
-    <section id="about" class="container">
-      <h2 class="section-title">About</h2>
-      <p class="section-subtitle">
-        A short bio goes here — background, focus areas, and what you're currently working on.
+    <section id="Education" class="container">
+      <h2 class="section-title">Education</h2>
+      <p class="btn btn-outline">
+        Master's in Information and Data Science - University of California, Berkeley | 2026 - Present
+      </p>
+      <p class="btn btn-outline">
+        Bachelor's of Science in Statistcs and Data Science - University of California, Los Angeles | 2022 - 2024
       </p>
     </section>
+
 
     <section id="projects" class="container">
       <h2 class="section-title">Projects</h2>
@@ -260,9 +353,9 @@
                 <a href = "https://datasci-209-flask-teamscience-verce.vercel.app/" target="_blank"> Link to Project Site</a>
             </p>
             <ul>
-                <li><b>Goal: </b>Investigate NIH Grant defunding patterns.</li>
-                <li><b>Target Users:</b> Slightly technical audience who are willing to read the article in some depth (policy makers, grant writers, researchers, journalists, interested individuals)</li>
-    
+                <li>Investigation of NIH Grant defunding patterns through visualization.</li>
+                <li>Uncover and discover as you scroll.</li>
+
             </ul>
             <div class="card-tags">
               <span>Python</span>
@@ -276,23 +369,26 @@
         </div>
 
         <div class="card">
-          <img src="static/203 Project Thumbnail.png" alt="Project 2 Thumbnail">
+          <img src="static/203 slide thumbnail.png" alt="Project 2 Thumbnail">
           <div class="card-body">
             <h3>Investigating the Relationship Between Playing Style and Expected Goals</h3>
             <ul>
                 <li>
-                    <b>Research Question:</b>To what extent are the four tactical concepts: possession-based build-up, attacking width, vertical attacking movements, and defensive aggression, playing style indicators associated with a team’s expected goals (xG) during the FIFA World Cup 2026?
+                    Explore which  playing style indicators are associated with a team’s expected goals (xG) during the FIFA World Cup 2026.
+                </li>
+                <li>
+                    Multiple Linear Regression.
                 </li>
             </ul>
             <div class="card-tags">
               <span>R</span>
-              <span>Regression</span>
+              <span>Tidyverse</span>
             </div>
           </div>
         </div>
 
         <div class="card">
-          <img src="static/200 Project Thumbnail.png" alt="Project 3 screenshot">
+          <img src="static/Dominate Drivers.png" alt="Project 3 screenshot">
           <div class="card-body">
             <h3>F1 Exploratory Data Analysis</h3>
             <ul>
@@ -305,14 +401,15 @@
             </ul>
             <div class="card-tags">
               <span>Python</span>
-              <span>pandas</span>
-              <span>matplotlib</span>
+              <span>Pandas</span>
+              <span>Matplotlib</span>
+              <span>EDA</span>
             </div>
           </div>
         </div>
       </div>
-      </div>
     </section>
+
 
     <section id="contact" class="container">
       <h2 class="section-title">Contact</h2>
