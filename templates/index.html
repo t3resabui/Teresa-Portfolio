@@ -43,7 +43,8 @@
      2. RESET / BASE
      ========================================= */
   * , *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  html { scroll-behavior: smooth; }
+  html { scroll-behavior: smooth;
+        scroll-padding-top: 100px; }
   body {
     font-family: var(--font-base);
     font-size: var(--fs-base);
@@ -53,7 +54,10 @@
     -webkit-font-smoothing: antialiased;
   }
   img { max-width: 100%; display: block; }
-  a { color: inherit; text-decoration: underline; }
+  a { color: inherit; text-decoration: none; }
+  a.custom-link {
+  text-decoration: underline;
+}
   ul { list-style: none; }
   h1, h2, h3 { line-height: 1.2; font-weight: 700; }
 
@@ -420,7 +424,7 @@
           <img src="static/map_facet.png" alt="Project 1 Thumbnail">
           <div class="card-body">
             <h3>
-                <a href = "https://datasci-209-flask-teamscience-verce.vercel.app/" target="_blank"> NIH Grants Termination and Freezes </a>
+                <a href = "https://datasci-209-flask-teamscience-verce.vercel.app/" class="custom-link"  target="_blank"> NIH Grants Termination and Freezes </a>
             </h3>
             <ul>
                 <li>Investigation of NIH Grant defunding patterns through visualization.</li>
@@ -442,7 +446,7 @@
           <img src="static/203 slide thumbnail.png" alt="Project 2 Thumbnail">
           <div class="card-body">
             <h3>
-                <a href = "static/assets/DATASCI-203 Final Project Report - Google Slides.pdf" target="_blank"> Investigating the Relationship Between Playing Style and Expected Goals</a>
+                <a href = "static/assets/DATASCI-203 Final Project Report - Google Slides.pdf"  class="custom-link"  target="_blank"> Investigating the Relationship Between Playing Style and Expected Goals</a>
             </h3>
             <ul>
                 <li>
@@ -463,7 +467,7 @@
           <img src="static/Dominate Drivers.png" alt="Project 3 screenshot">
           <div class="card-body">
             <h3>
-                <a href = "static/assets/DATASCI-203 Final Project Report - Google Slides.pdf" target="_blank"> F1 Exploratory Data Analysis</a>
+                <a href = "static/assets/Team F1 Presentation.pdf" class="custom-link" target="_blank"> F1 Exploratory Data Analysis</a>
             </h3>
             <ul>
                 <li>
