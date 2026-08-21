@@ -240,7 +240,7 @@
     10. ABOUT
 ========================================= */
 
-  .about-content {
+.about-content {
   display: flex;
   gap: var(--space-lg);
   align-items: flex-start;
@@ -261,6 +261,7 @@
   height: 260px;
   border-radius: 50%;
   object-fit: cover;
+  filter: brightness(1.15);
 }
 
 @media (max-width: 768px) {
@@ -277,6 +278,51 @@
   /* =========================================
      11. EDUCATION
      ========================================= */
+    .education {
+    display: flex;
+    gap: var(--space-lg);
+    align-items: flex-start;
+    font-weight: 600;
+    color: var(--color-text);
+    padding: 0.75rem 1.5rem
+    }
+
+    .education ul {
+    list-style: none;
+    padding-left: 0;
+    color: var(--color-text);
+    }
+
+    .education li {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: var(--space-md);
+    padding: 0.4rem 0;
+    }
+
+    .education .edu-title {
+    font-weight: 600;
+    font-size: var(--fs-md);
+    color: var(--color-text);
+    }
+
+    .education .edu-date {
+    flex-shrink: 0;
+    white-space: nowrap;
+    }
+
+    .education span {
+    font-size: var(--fs-sm);
+    color: var(--color-text-muted);
+    }
+
+    @media (max-width: 768px) {
+    .education li {
+        flex-direction: column;
+        gap: 0.2rem;
+    }
+    }
   
 </style>
 </head>
@@ -292,6 +338,8 @@
 
         <ul class="nav-menu">
           <li><a href="#about">About</a></li>
+          <li><a href="#education">Education</a></li>
+          <li><a href="#experience">Experience</a></li>
           <li><a href="#projects">Projects</a></li>
           <li><a href="#contact">Contact</a></li>
         </ul>
@@ -329,15 +377,38 @@
     </div>
     </section>
 
-    <section id="Education" class="container">
+    <section id="education" class="container">
       <h2 class="section-title">Education</h2>
-      <p class="btn btn-outline">
-        Master's in Information and Data Science - University of California, Berkeley | 2026 - Present
-      </p>
-      <p class="btn btn-outline">
-        Bachelor's of Science in Statistcs and Data Science - University of California, Los Angeles | 2022 - 2024
-      </p>
+        <div class="education">
+        <ul>
+            <li>
+            <span class="edu-title">MS, Information and Data Science <span class="edu-school">- UC Berkeley, Berkeley, CA</span></span>
+            <span class="edu-date">2026 - Present</span>
+            </li>
+            <li>
+            <span class="edu-title">BS, Statistics and Data Science <span class="edu-school">- UCLA, Los Angeles, CA</span></span>
+            <span class="edu-date">2022 - 2024</span>
+            </li>
+        </ul>
+        </div>
     </section>
+
+    <section id="experience" class="container">
+      <h2 class="section-title">Work Experience</h2>
+        <div class="education">
+        <ul>
+            <li>
+            <span class="edu-title">Quality Analyst<span class="edu-school">- RK Logistics Group, Newark, CA</span></span>
+            <span class="edu-date">2024 - Present</span>
+            </li>
+            <li>
+            <span class="edu-title">Data Analyst Intern <span class="edu-school">- Elcon Precision LLC, San Jose, CA</span></span>
+            <span class="edu-date">2023</span>
+            </li>
+        </ul>
+        </div>
+    </section>
+
 
 
     <section id="projects" class="container">
@@ -371,10 +442,12 @@
         <div class="card">
           <img src="static/203 slide thumbnail.png" alt="Project 2 Thumbnail">
           <div class="card-body">
-            <h3>Investigating the Relationship Between Playing Style and Expected Goals</h3>
+            <h3>
+                <a href = "static/assets/DATASCI-203 Final Project Report - Google Slides.pdf" target="_blank"> Investigating the Relationship Between Playing Style and Expected Goals</a>
+            </h3>
             <ul>
                 <li>
-                    Explore which  playing style indicators are associated with a team’s expected goals (xG) during the FIFA World Cup 2026.
+                    Explore which playing style indicators are associated with a team’s expected goals (xG) during the FIFA World Cup 2026.
                 </li>
                 <li>
                     Multiple Linear Regression.
@@ -390,7 +463,9 @@
         <div class="card">
           <img src="static/Dominate Drivers.png" alt="Project 3 screenshot">
           <div class="card-body">
-            <h3>F1 Exploratory Data Analysis</h3>
+            <h3>
+                <a href = "static/assets/DATASCI-203 Final Project Report - Google Slides.pdf" target="_blank"> F1 Exploratory Data Analysis</a>
+            </h3>
             <ul>
                 <li>
                     Explore F1 data over time to analyze performance trends across eras
